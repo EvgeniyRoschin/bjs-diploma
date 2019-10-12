@@ -72,13 +72,13 @@ function main() {
                 } else {
                     console.log(`ivan is authorized!`);
 
-                    ivan.addMoney({ currency: 'RUB', amount: 100 }, (err, data) => {
+                    ivan.addingMoney({ currency: 'EUR', amount: 500000 }, (err, data) => {
                         if (err) {
                             console.error('Error during adding money to Ivan');
                         } else {
                             console.log(`Added 500000 euros to Ivan`);
 
-                            ivan.convertationCurrensy( {fromCurrency: 'USD', targetCurrency: 'Netcoin', targetAmount: 100}, (err, data) => {
+                            ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'Netcoins', targetAmount: 36000}, (err, data) => {
                                 if (err) {
                                     console.error('Error during convertation money');
                                 } else {
