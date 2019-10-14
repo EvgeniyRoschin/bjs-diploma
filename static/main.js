@@ -41,11 +41,23 @@ class Profile {
     }
 }
 
-function gettingStock() {
-    console.log(`Getting stock info`)
-    let stock = ApiConnector.getStocks();
-    return stock;
+
+function gettingStock(callback) {
+    return ApiConnector.getStocks((err, data) => {
+      console.log(`Getting stock info`);
+      callback(err, data);    
+    });
 }
+
+gettingStock((err, data) => {
+    if (err) {
+      console.error('Курсы валют не были получены');
+      console.log(err);
+    } else {
+      console.log('Последние 100 курсов валют:');
+      console.log(data);
+    }
+  });
 
 function main() {
     let ivan = new Profile({
@@ -63,6 +75,7 @@ function main() {
     ivan.addingNewUser( (err, data) => {
         if (err) {
             console.error('Error during adding user');
+            console.log(err);
         } else {
             console.log(`ivan is created!`);
 
@@ -78,7 +91,7 @@ function main() {
                         } else {
                             console.log(`Added 500000 euros to Ivan`);
 
-                            ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'Netcoins', targetAmount: 36000}, (err, data) => {
+                            ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: 36000}, (err, data) => {
                                 if (err) {
                                     console.error('Error during convertation money');
                                 } else {
