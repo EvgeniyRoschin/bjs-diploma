@@ -49,16 +49,6 @@ function gettingStock(callback) {
     });
 }
 
-gettingStock((err, data) => {
-    if (err) {
-      console.error('Курсы валют не были получены');
-      console.log(err);
-    } else {
-      console.log('Последние 100 курсов валют:');
-      console.log(data);
-    }
-  });
-
 function main() {
     let ivan = new Profile({
         username: 'IvanR',
@@ -91,6 +81,16 @@ function main() {
                         } else {
                             console.log(`Added 500000 euros to Ivan`);
 
+                            gettingStock((err, data) => {
+                                if (err) {
+                                  console.error('Курсы валют не были получены');
+                                  console.log(err);
+                                } else {
+                                  console.log('Последние 100 курсов валют:');
+                                  console.log(data);
+                                }
+                              });
+
                             ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: 36000}, (err, data) => {
                                 if (err) {
                                     console.error('Error during convertation money');
@@ -103,7 +103,7 @@ function main() {
                                         } else {
                                             console.log(`marya is created!`);
 
-                                            ivan.transferingMoney({to: marya, amount: 100}, (err, data) => {
+                                            ivan.transferingMoney({to: marya.username, amount: 100}, (err, data) => {
                                                 if (err) {
                                                     console.error('Error during transfering money');
                                                 } else {
