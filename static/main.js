@@ -91,7 +91,7 @@ function main() {
                                 }
                               });
 
-                            ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: 36000}, (err, data) => {
+                            ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: (data[99].NETCOIN_EUR * amount)}, (err, data) => {
                                 if (err) {
                                     console.error('Error during convertation money');
                                 } else {
