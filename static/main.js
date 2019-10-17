@@ -75,11 +75,11 @@ function main() {
                 } else {
                     console.log(`ivan is authorized!`);
 
-                    ivan.addingMoney({ currency: 'EUR', amount: 500000 }, (err, data) => {
+                    ivan.addingMoney({ currency: 'EUR', amount: 500 }, (err, data) => {
                         if (err) {
                             console.error('Error during adding money to Ivan');
                         } else {
-                            console.log(`Added 500000 euros to Ivan`);
+                            console.log(`Added 500 euros to Ivan`);
 
                             gettingStock((err, data) => {
                                 if (err) {
@@ -88,32 +88,34 @@ function main() {
                                 } else {
                                   console.log('Последние 100 курсов валют:');
                                   console.log(data);
-                                }
-                              });
 
-                            ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: (data[99].NETCOIN_EUR * amount)}, (err, data) => {
-                                if (err) {
-                                    console.error('Error during convertation money');
-                                } else {
-                                    console.log(`Converted to coins ${ivan}`);
-
-                                    marya.addingNewUser( (err, data) => {
-                                        if (err) {
-                                            console.error('Error during adding user');
-                                        } else {
-                                            console.log(`marya is created!`);
-
-                                            ivan.transferingMoney({to: marya.username, amount: 100}, (err, data) => {
-                                                if (err) {
-                                                    console.error('Error during transfering money');
-                                                } else {
-                                                    console.log(`marya has got 100 Netcoins`);
-                                                }
-                                            });
-                                        }
-                                    });
+                                  ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: (data[data.length -1].NETCOIN_EUR * 500)}, (err, data) => {
+                                    if (err) {
+                                        console.error('Error during convertation money');
+                                    } else {
+                                        console.log(`Converted to coins ${ivan}`);
+    
+                                        marya.addingNewUser( (err, data) => {
+                                            if (err) {
+                                                console.error('Error during adding user');
+                                            } else {
+                                                console.log(`marya is created!`);
+    
+                                                ivan.transferingMoney({to: marya.username, amount: 100}, (err, data) => {
+                                                    if (err) {
+                                                        console.error('Error during transfering money');
+                                                    } else {
+                                                        console.log(`marya has got 100 Netcoins`);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+    
                                 }
                             });
+
                         }
                     });
                 }
