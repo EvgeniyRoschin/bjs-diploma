@@ -89,7 +89,7 @@ function main() {
                                   console.log('Последние 100 курсов валют:');
                                   console.log(data);
 
-                                  ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: (data[data.length -1].NETCOIN_EUR * 500)}, (err, data) => {
+                                  ivan.convertationCurrensy( {fromCurrency: 'EUR', targetCurrency: 'NETCOIN', targetAmount: (data[data.length -1].EUR_NETCOIN * 500)}, (err, data) => {
                                     if (err) {
                                         console.error('Error during convertation money');
                                     } else {
